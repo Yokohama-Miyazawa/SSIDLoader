@@ -1,0 +1,2 @@
+# SSIDLoader
+MicroSDのCSVファイルからSSIDとパスワードを読み込む、Arduino用ライブラリ
