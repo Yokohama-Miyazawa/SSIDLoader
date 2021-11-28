@@ -1,29 +1,29 @@
+[日本語版README](./README-jp.md)
 # SSIDLoader  
-MicroSDのCSVファイルからSSIDとパスワードを読み込む、Arduino用ライブラリ  
-SSIDおよびパスワードは複数設定可能。  
+Arduino library that loads multiple SSIDs and passwords from a MicroSD card.  
 
-## 使い方  
-aps.csvというCSVファイルにSSIDとパスワードを以下のように記述する。
+## Usage  
+Create a CSV file named aps.csv. Write SSIDs and passwords into it.  
 ```
 SSID1,password_of_ssid1
 SSID2,password_of_ssid2
 SSID3,password_of_ssid3
 ```
-aps.csvをMicroSDカードのルートディレクトリに配置する。  
-プログラムから関数`addAPfromSD()`を呼び出してSSID情報を登録し、  
-次に`connectToAP()`関数を呼び出してアクセスポイントに接続する。  
+Put aps.csv at the root directory of a MicroSD card.  
+To register SSID, call `addAPfromSD()` from your program.  
+Next, call `connectToAP()` in order to connect to the access point.  
 
-## 関数の説明
+## Description of the Functions  
 ### `addAPfromSD` 
-引数`fileName`で指定されたCSVファイルを読み込み、記述されたSSIDとパスワードを登録する。  
-`fileName`は省略可能で、その場合はルートディレクトリのaps.csvファイルを読み込む。   
-#### 書式  
+It loads a CSV file specified by the `fileName` argument and registers SSIDs and passwords of the CSV file.  
+You can omit `fileName`, then the file aps.csv will be loaded, which is located in the root directory of the MicroSD card.  
+#### Syntax  
 `void addAPfromSD()`  
 `void addAPfromSD(const char* fileName="/aps.csv")`  
 
 ### `connectToAP()`  
-`addAPfromSD`で登録したアクセスポイントに接続する。  
-引数`numberOfTrials`を指定すると、その回数接続を繰り返しても接続できない場合は接続を断念する。  
-#### 書式  
+It connects to the access point registered with `addAPfromSD`.  
+If `numberOfTrials` is specified, the connection is abandoned if no connection to the access point can be established after the specified number of attempts.  
+#### Syntax  
 `bool connectToAP()`  
 `bool connectToAP(const uint8_t numberOfTrials)`  
