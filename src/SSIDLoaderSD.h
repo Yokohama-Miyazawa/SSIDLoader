@@ -22,7 +22,6 @@ void addAPfromSD(const char* fileName="/aps.csv")
         passwd = fileLine.substring(comma + 1);
         log_i("SSID: %s", ssid.c_str());
         wifiMulti.addAP(ssid.c_str(), passwd.c_str());
-        delay(10);
     }
     accessPoints.close();
     return;
@@ -30,7 +29,10 @@ void addAPfromSD(const char* fileName="/aps.csv")
 
 bool connectToAP()
 {
-    while (wifiMulti.run() != WL_CONNECTED) { delay(10); }
+    while (wifiMulti.run() != WL_CONNECTED) {
+        log_d("retrying...");
+        delay(1000);
+    }
     log_i("WiFi connected");
     return true;
 }
@@ -44,7 +46,8 @@ bool connectToAP(const uint8_t numberOfTrials)
             log_i("The number of trials is exceeded. Connection failure.");
             return false;
         }
-        delay(10);
+        log_d(retrying...);
+        delay(1000);
     }
     log_i("WiFi connected");
     return true;

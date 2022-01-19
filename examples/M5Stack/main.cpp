@@ -14,7 +14,7 @@ void setup()
 void loop()
 {
   M5.update();
-  if(M5.BtnB.isPressed()){
+  if(M5.BtnB.wasPressed()){
     Serial.printf("IP address: ");
     Serial.println(WiFi.localIP());
   }
